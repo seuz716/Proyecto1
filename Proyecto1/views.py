@@ -1,11 +1,25 @@
+
 from django.http import HttpResponse
 import datetime
+from django.template import Template, Context
+
+class Persona(object):
+    def __init__(self,nombre,apellido,edad):
+        self.nombre=nombre
+        self.apellido=apellido
+        self.edad=edad
+
 
 def saludo(request): #primera vista
-    cuerpo="""<html>
-    <body> <h1>Severa Gurrupleta</h1>
-    </body> 
-    </html>""" 
+
+    p1=Persona("César","Abadía",43)
+    temasDelCurso=["Plantillas","Módelos","Vistas","Despliegue"]
+    doc_externo=open("/home/seuz716/Escritorio/DjangoProject/Proyecto1/Proyecto1/plantillas/mi_plantilla.html")
+    plt=Template(doc_externo.read())
+    doc_externo.close()
+    ctx= Context({"nombreUsuario":p1.nombre,"apellidoUser":p1.apellido,"edadUser":p1.edad, "temas":temasDelCurso})
+    cuerpo = plt.render(ctx)
+
     return HttpResponse(cuerpo)
 
 def despedida(request): #primera vista

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>el nombre del usuario es: {{nombreUsuario}} {{apellidoUser}}</h1>
+        <h2>edad:{{edadUser}} </h2>
+        <h2>Temas del curso:</h2>
+        <p>
+            <ul>
+                {% if temas %}
+                    {%for elTema in temas %}
+
+                        <li>{{elTema}} </li>
+                    {% endfor %}
+                {% else %}
+                    <p>No hay temas para mostrar</p>        
+                {% endif %}    
+            </ul>
+        </p>
+    </div>
+</body>
+</html>
+
