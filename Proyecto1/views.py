@@ -1,7 +1,9 @@
 
 from django.http import HttpResponse
 import datetime
-from django.template import Template, Context
+from django.template import Template, Context, loader
+
+
 
 class Persona(object):
     def __init__(self,nombre,apellido,edad):
@@ -14,11 +16,12 @@ def saludo(request): #primera vista
 
     p1=Persona("César","Abadía",43)
     temasDelCurso=["Plantillas","Módelos","Vistas","Despliegue"]
-    doc_externo=open("/home/seuz716/Escritorio/DjangoProject/Proyecto1/Proyecto1/plantillas/mi_plantilla.html")
-    plt=Template(doc_externo.read())
-    doc_externo.close()
-    ctx= Context({"nombreUsuario":p1.nombre,"apellidoUser":p1.apellido,"edadUser":p1.edad, "temas":temasDelCurso})
-    cuerpo = plt.render(ctx)
+    #doc_externo=open("/home/seuz716/Escritorio/DjangoProject/Proyecto1/Proyecto1/plantillas/mi_plantilla.html")
+    #plt=Template(doc_externo.read())
+    #doc_externo.close()
+    doc_externo=loader.get_template("mi_plantilla.html")
+    #ctx= Context({"nombreUsuario":p1.nombre,"apellidoUser":p1.apellido,"edadUser":p1.edad, "temas":temasDelCurso})
+    cuerpo = doc_externo.render({"nombreUsuario":p1.nombre,"apellidoUser":p1.apellido,"edadUser":p1.edad, "temas":temasDelCurso})
 
     return HttpResponse(cuerpo)
 

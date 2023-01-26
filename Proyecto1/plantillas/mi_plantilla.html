@@ -9,6 +9,13 @@
 <body>
     <div>
         <h1>el nombre del usuario es: {{nombreUsuario}} {{apellidoUser}}</h1>
+        {%if nombreUsuario == 'César'%}
+        <p style="color: red;"> El curso lo imparte el profesor titular
+        </p>
+        {% else %}
+        <p style="color: blue;"> El curso lo imparte el profesor suplente
+        </p>
+        {% endif %}
         <h2>edad:{{edadUser}} </h2>
         <h2>Temas del curso:</h2>
         <p>
