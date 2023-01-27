@@ -2,6 +2,7 @@
 from django.http import HttpResponse
 import datetime
 from django.template import Template, Context, loader
+from django.shortcuts import render
 
 
 
@@ -19,11 +20,11 @@ def saludo(request): #primera vista
     #doc_externo=open("/home/seuz716/Escritorio/DjangoProject/Proyecto1/Proyecto1/plantillas/mi_plantilla.html")
     #plt=Template(doc_externo.read())
     #doc_externo.close()
-    doc_externo=loader.get_template("mi_plantilla.html")
+    #doc_externo=loader.get_template("mi_plantilla.html")
     #ctx= Context({"nombreUsuario":p1.nombre,"apellidoUser":p1.apellido,"edadUser":p1.edad, "temas":temasDelCurso})
-    cuerpo = doc_externo.render({"nombreUsuario":p1.nombre,"apellidoUser":p1.apellido,"edadUser":p1.edad, "temas":temasDelCurso})
+    #cuerpo = doc_externo.render({"nombreUsuario":p1.nombre,"apellidoUser":p1.apellido,"edadUser":p1.edad, "temas":temasDelCurso})
 
-    return HttpResponse(cuerpo)
+    return render(request,"mi_plantilla.html", {"nombreUsuario":p1.nombre,"apellidoUser":p1.apellido,"edadUser":p1.edad, "temas":temasDelCurso})
 
 def despedida(request): #primera vista
     return HttpResponse("Despedida Pagina")    
